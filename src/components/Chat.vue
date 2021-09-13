@@ -24,10 +24,7 @@
 </template>
 
 <script>
-import UserMessage from "./UserMessage.vue";
-
 export default {
-  components: { UserMessage },
   methods: {
     showMessage(event) {
       event.preventDefault();
@@ -39,6 +36,20 @@ export default {
   </section>
       `;
       this.$refs.input.value = "";
+      setTimeout(this.getBotMessage("Hur mår du idag?"), 2000);
+    },
+    getBotMessage(message) {
+      this.$refs.chat.innerHTML += `
+        <section class="bot-msg">
+            <img
+                src="https://image.flaticon.com/icons/png/512/1587/1587565.png"
+                alt="Bot"
+            />
+            <div class="bubble bot-bubble">
+                <p>${message}</p>
+            </div>
+        </section>
+      `;
     },
   },
 };
