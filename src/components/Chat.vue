@@ -13,12 +13,12 @@
     </section>
 
     <div class="input-wrapper" id="input-wrapper">
-      <div id="name-form">
+      <form id="name-form">
         <input id="name-input" type="text" ref="input" />
         <button class="send-btn" type="submit" @click="showMessage">
           Send
         </button>
-      </div>
+      </form>
     </div>
   </div>
 </template>
@@ -29,7 +29,8 @@ import UserMessage from "./UserMessage.vue";
 export default {
   components: { UserMessage },
   methods: {
-    showMessage() {
+    showMessage(event) {
+      event.preventDefault();
       this.$refs.chat.innerHTML += `
         <section class="user-msg">
     <div class="bubble user-bubble">
