@@ -1,0 +1,16 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("https://img.freepik.com/free-photo/abstract-water-ocean-waves-texture-background_117652-6.jpg?size=626&ext=jpg");
+  background-size: cover;
+  backdrop-filter: blur(10px);
+}
+
+h1 {
+  color: white;
+  font-size: 2.5rem;
+}

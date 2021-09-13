@@ -1,24 +1,43 @@
 <template>
-  <div class="backdrop">
+  <div class="backdrop" @click.self="closeModal">
     <div class="modal">
-      <p>Modal content</p>
+      <h2>Chat with me!</h2>
+      <Chat />
     </div>
   </div>
 </template>
 
+<script>
+import Chat from "./Chat.vue";
+
+export default {
+  components: { Chat },
+  methods: {
+    closeModal() {
+      this.$emit("close");
+    },
+  },
+};
+</script>
+
 <style scoped>
 .modal {
-  width: 400px;
   padding: 20px;
-  margin: 100px auto;
+  margin: 10% auto;
   border-radius: 10px;
   background: white;
+  width: 50%;
 }
 .backdrop {
   top: 0;
+  left: 0;
   position: fixed;
   background: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
+}
+
+h2 {
+  color: black;
 }
 </style>

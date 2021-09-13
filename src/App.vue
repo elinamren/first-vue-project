@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <Modal />
+    <Modal v-if="showModal" @close="handleClick" />
+    <button @click="handleClick">Talk to the bot</button>
   </div>
 </template>
 
@@ -13,13 +14,13 @@ export default {
   components: { Modal },
   data() {
     return {
-      title: "My first Vue",
-      name: "Elin",
+      title: "My first Vue project",
+      showModal: false,
     };
   },
   methods: {
     handleClick() {
-      console.log(this.$refs.name.value);
+      this.showModal = !this.showModal;
     },
   },
 };
@@ -32,6 +33,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  height: 100vh;
+  padding: 50px;
 }
 </style>
