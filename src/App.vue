@@ -1,8 +1,7 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <Modal v-if="showModal" @close="handleClick" />
-    <button @click="handleClick">Talk to the bot</button>
+    <Modal />
   </div>
 </template>
 
@@ -15,14 +14,9 @@ export default {
   data() {
     return {
       title: "My first Vue project",
-      showModal: false,
     };
   },
-  methods: {
-    handleClick() {
-      this.showModal = !this.showModal;
-    },
-  },
+  methods: {},
 };
 </script>
 
@@ -34,6 +28,30 @@ export default {
   text-align: center;
   color: #2c3e50;
   height: 100vh;
-  padding: 50px;
+  padding: 80px;
+}
+button {
+  background-color: #00909d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 16px 40px;
+  margin-right: 4px;
+  font-size: 16px;
+  line-height: 26px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.cta-button:active {
+  opacity: 0;
+}
+
+.cta-button {
+  margin: 20px;
 }
 </style>

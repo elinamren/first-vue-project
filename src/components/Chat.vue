@@ -1,6 +1,6 @@
 <template>
   <div class="chat-wrapper">
-    <section class="chat" id="chat">
+    <section class="chat" id="chat" ref="chat">
       <section class="bot-msg">
         <img
           src="https://image.flaticon.com/icons/png/512/1587/1587565.png"
@@ -11,24 +11,39 @@
         </div>
       </section>
     </section>
-    <section class="user-msg">
-      <div class="bubble user-bubble">
-        <p>Hej!</p>
-      </div>
-    </section>
 
     <div class="input-wrapper" id="input-wrapper">
-      <form id="name-form">
-        <input id="name-input" type="text" />
-        <button class="send-btn" type="submit">
+      <div id="name-form">
+        <input id="name-input" type="text" ref="input" />
+        <button class="send-btn" type="submit" @click="showMessage">
           Send
         </button>
-      </form>
+      </div>
     </div>
   </div>
 </template>
 
-<style scoped>
+<script>
+import UserMessage from "./UserMessage.vue";
+
+export default {
+  components: { UserMessage },
+  methods: {
+    showMessage() {
+      this.$refs.chat.innerHTML += `
+        <section class="user-msg">
+    <div class="bubble user-bubble">
+      <p>${this.$refs.input.value}</p>
+    </div>
+  </section>
+      `;
+      this.$refs.input.value = "";
+    },
+  },
+};
+</script>
+
+<style>
 input {
   box-sizing: border-box;
   border: none;
@@ -113,23 +128,5 @@ input {
 .input-wrapper form {
   width: 100%;
   display: flex;
-}
-
-button {
-  background-color: #00909d;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 16px 40px;
-  margin-right: 4px;
-  font-size: 16px;
-  line-height: 26px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-button:hover {
-  opacity: 0.9;
-  transition: all 0.2s ease;
 }
 </style>

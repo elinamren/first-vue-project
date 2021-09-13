@@ -1,5 +1,5 @@
 <template>
-  <div class="backdrop" @click.self="closeModal">
+  <div class="backdrop">
     <div class="modal">
       <h2>Chat with me!</h2>
       <Chat />
