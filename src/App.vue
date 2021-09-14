@@ -13,7 +13,7 @@ export default {
   components: { Modal },
   data() {
     return {
-      title: "My first Vue project",
+      title: "The Vue Bot",
     };
   },
   methods: {},
