@@ -24,7 +24,7 @@
           Pepp
         </button>
         <button class="send-btn" type="button" @click="tarot">
-          Tarot kort
+          Tarotkort
         </button>
         <button class="send-btn" type="button" @click="weather">
           Veta vädret
@@ -56,6 +56,9 @@ export default {
         "Två i bägare, står för kärlek. Du känner stark gemenskap med en partner, vän eller kollega. Eller har det skett ett oväntat möte med någon som du finner attraktiv eller som du tycker om? Två i bägare brukar även stå för förtroliga samtal mellan två människor.",
         "Drottning i pentagram, en praktisk kvinna som man kan lita på. Hon är en riktig affärskvinna, smart och som kommer att kämpa för sin rätt. När det handlar om pengar kan den här kvinnan vara rätt så hård och envis. Som situation betyder kortet att man tänker praktiskt i materiella frågor. Drottning i Pentagram är snäll och delar med sig, men hon får inte alltid någon stöd från omgivningen, även när hon verkligen förtjänar det. Drottning i Pentagram har således en hel del gemensamt med Kejsarinnan och står även för alla kvinnliga healers. För en man kan kortet betyda att han är gift.",
       ],
+      url:
+        "http://api.weatherstack.com/current?access_key=6d9de88460868d174e00c14ac58ec1b7&query=Stockholm",
+      post: [],
     };
   },
   methods: {
@@ -113,10 +116,27 @@ export default {
         "bot"
       );
     },
+
     weather() {
       this.showMessage("Vädret just nu", "user");
       this.showMessage(`Sol och 10 grader`, "bot");
+      console.log(this.post);
     },
+    async fetchWeather() {
+      const data = fetch(this.url)
+        .then((response) => response.json())
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+      if (data.errors) {
+        console.log(data.errors);
+      } else {
+        this.post = data;
+      }
+    },
+  },
+  created() {
+    this.fetchWeather();
   },
 };
 </script>
